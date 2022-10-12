@@ -20,6 +20,7 @@ from AstrakoBot import (
     StartTime,
     telethn,
     updater,
+    DROP_UPDATES,
 )
 
 # needed to dynamically load modules
@@ -662,12 +663,9 @@ def main():
         LOGGER.info("Using long polling.")
         allowed_updates = ['message', 'edited_message', 'callback_query', 'callback_query', 'my_chat_member',
                            'chat_member', 'chat_join_request', 'channel_post', 'edited_channel_post', 'inline_query']
-        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True, allowed_updates = allowed_updates)
+        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=DROP_UPDATES, allowed_updates = allowed_updates)
 
-    if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
-    else:
-        telethn.run_until_disconnected()
+    telethn.run_until_disconnected()
 
     updater.idle()
 

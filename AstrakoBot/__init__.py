@@ -84,6 +84,7 @@ if ENV:
 
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
     BACKUP_PASS = os.environ.get("BACKUP_PASS", True)
+    DROP_UPDATES = os.environ.get("DROP_UPDATES", False)
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
@@ -149,6 +150,7 @@ else:
     INFOPIC = Config.INFOPIC
     WEATHER_API = Config.WEATHER_API
     BACKUP_PASS = Config.BACKUP_PASS
+    DROP_UPDATES = Config.DROP_UPDATES
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])

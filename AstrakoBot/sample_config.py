@@ -72,6 +72,7 @@ class Config(object):
     SPAMMERS = None
     
     BACKUP_PASS = "12345" # The password used for the cron backups zip
+    DROP_UPDATES = False # whether to drop the pending updates or not
 
 class Production(Config):
     LOGGER = True
