@@ -1,3 +1,4 @@
+import glob
 import os
 import shutil
 import datetime
@@ -56,21 +57,30 @@ def backup_db(_: CallbackContext):
             print("config copied")
             shutil.copyfile('AstrakoBot/config.py', '{}/config.py'.format(bkplocation))
         log.info("zipping the backup")
-        zipcmd = "zip --password '{}' {} {}/*".format(zip_pass, bkplocation, bkplocation)
+        zipcmd = "zip -s 45m --password '{}' {} {}/*".format(zip_pass, bkplocation, bkplocation)
         zipinfo = "zipping db backup"
         log.info("zip started")
         term(zipcmd, zipinfo)
         log.info("zip done")
         sleep(1)
-        with open('backups/{}'.format(f'{datenow}.zip'), 'rb') as bkp:
-            nm = "{} backup \n".format(bot.username) + datenow
-            bot.send_document(OWNER_ID,
-                            document=bkp,
-                            caption=nm,
-                            timeout=20
-                            )
+        for file in glob.glob('backups/{}'.format(f'{datenow}.z*')):
+            with open(file, 'rb') as bkp:
+                nm = "{} backup \n".format(bot.username) + datenow
+                try:
+                    bot.send_document(OWNER_ID,
+                                document=bkp,
+                                caption=nm,
+                                timeout=20
+                                )
+                except Exception as err:
+                    bot.send_message(OWNER_ID, "Failed to send backup:\n {}".format(err))
         log.info("removing zipped files")
         shutil.rmtree("backups/{}".format(datenow))
+        for file in glob.glob('backups/{}'.format(f'202*.z*')):
+            if os.path.isfile(file) \
+                    and os.path.getmtime(file) < (datetime.datetime.now() - datetime.timedelta(days=5)).timestamp():
+                os.remove(file)
+
         log.info("backup done")
         tmp.edit_text("Backup complete!")
         sleep(5)
