@@ -135,7 +135,7 @@ def warn(
         )
 
     try:
-        message.reply_text(reply, reply_markup=keyboard, parse_mode=ParseMode.HTML)
+        message.reply_text(reply, reply_markup=keyboard, parse_mode=ParseMode.HTML, allow_sending_without_reply=True)
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply

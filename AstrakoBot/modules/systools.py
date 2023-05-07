@@ -122,14 +122,14 @@ def status(update: Update, context: CallbackContext):
     uname = platform.uname()
     msg += "*System information*\n"
     msg += f"OS: `{uname.system}`\n"
-    msg += f"Version: `{uname.version}`\n"
+    msg += f"Version: `{uname.version.split(' ')[0]}`\n"
     msg += f"Release: `{uname.release}`\n"
     msg += f"Processor: `{uname.processor}`\n"
     boot_time_timestamp = psutil.boot_time()
     bt = datetime.fromtimestamp(boot_time_timestamp)
     msg += f"Boot time: `{bt.day}/{bt.month}/{bt.year} - {bt.hour}:{bt.minute}:{bt.second}`\n"
     msg += f"CPU cores: `{psutil.cpu_count(logical=False)} physical, {psutil.cpu_count()} logical`\n"
-    msg += f"CPU freq: `{psutil.cpu_freq().current:.2f}Mhz`\n"
+    msg += f"CPU freq: `{psutil.cpu_freq().current:.2f}Mhz`\n" if psutil.cpu_freq() else ""
     msg += f"CPU usage: `{psutil.cpu_percent()}%`\n"
     ram = psutil.virtual_memory()
     msg += f"RAM: `{get_size(ram.total)} - {get_size(ram.used)} used ({ram.percent}%)`\n"
