@@ -39,9 +39,16 @@ if is_module_loaded(FILENAME):
                 result += "\n<b>Event Stamp</b>: <code>{}</code>".format(
                     datetime.utcnow().strftime(datetime_fmt)
                 )
+                try:
+                    if message and chat.type == chat.SUPERGROUP:
+                        if chat.username:
+                            result += f'\n<b>Link:</b> <a href="https://t.me/{chat.username}/{message.message_id}">click here</a>'
+                        else:
+                            cid = str(chat.id).replace("-100", '')
+                            result += f'\n<b>Link:</b> <a href="https://t.me/c/{cid}/{message.message_id}">click here</a>'
+                except AttributeError:
+                    result += '\n<b>Link:</b> No link for manual actions.'
 
-                if message.chat.type == chat.SUPERGROUP and message.chat.username:
-                    result += f'\n<b>Link:</b> <a href="https://t.me/{chat.username}/{message.message_id}">click here</a>'
                 log_chat = sql.get_chat_log_channel(chat.id)
                 if log_chat:
                     send_log(context, log_chat, chat.id, result)
