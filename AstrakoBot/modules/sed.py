@@ -7,6 +7,7 @@ from AstrakoBot.modules.disable import DisableAbleMessageHandler
 from AstrakoBot.modules.helper_funcs.regex_helper import infinite_loop_check
 from telegram import Update
 from telegram.ext import CallbackContext, Filters, run_async
+from AstrakoBot.modules.helper_funcs.chat_status import sudo_plus_silent
 
 DELIMITERS = ("/", ":", "|", "_")
 
@@ -56,7 +57,7 @@ def separate_sed(sed_string):
             flags = sed_string[counter:]
         return replace, replace_with, flags.lower()
 
-
+@sudo_plus_silent
 def sed(update: Update, context: CallbackContext):
     sed_result = separate_sed(update.effective_message.text)
     if sed_result and update.effective_message.reply_to_message:
@@ -116,7 +117,7 @@ def sed(update: Update, context: CallbackContext):
 
 
 __help__ = """
- • `s/<text1>/<text2>(/<flag>)`*:* Reply to a message with this to perform a sed operation on that message, replacing all \
+ • `s/<text1>/<text2>(/<flag>)` *(sudo users only):* Reply to a message with this to perform a sed operation on that message, replacing all \
 occurrences of 'text1' with 'text2'. Flags are optional, and currently include 'i' for ignore case, 'g' for global, \
 or nothing. Delimiters include `/`, `_`, `|`, and `:`. Text grouping is supported. The resulting message cannot be \
 larger than {}.
