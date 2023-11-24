@@ -101,8 +101,11 @@ def approved(update: Update, context: CallbackContext):
     msg = "The following users are approved.\n"
     approved_users = sql.list_approved(message.chat_id)
     for i in approved_users:
-        member = chat.get_member(int(i.user_id))
-        msg += f"- `{i.user_id}`: {member.user['first_name']}\n"
+        try:
+            member = chat.get_member(int(i.user_id))
+            msg += f"- `{i.user_id}`: {member.user['first_name']}\n"
+        except BadRequest:
+            sql.disapprove(message.chat_id, i.user_id)
     if msg.endswith("approved.\n"):
         message.reply_text(f"No users are approved in {chat_title}.")
         return ""
