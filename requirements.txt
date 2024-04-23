@@ -28,7 +28,7 @@ wikipedia
 telethon
 spamwatch
 alphabet_detector
-pyrate-limiter
+pyrate-limiter==2.8.1
 covid
 datetime
 pytz
