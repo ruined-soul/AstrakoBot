@@ -15,23 +15,23 @@ class Config(object):
     # REQUIRED
     # Login to https://my.telegram.org and fill in these slots with the details given by it
 
-    API_ID = 123456  # integer value, dont use ""
-    API_HASH = "awoo"
+    API_ID = 2170492  # integer value, dont use ""
+    API_HASH = "82b683da442942d5c177ec520318a32f"
     TOKEN = "7997707191:AAGDz7Ffdw-0H-P4YvvZr9X-a-LyYnJRLDE"  # This var used to be API_KEY but it is now TOKEN, adjust accordingly.
-    OWNER_ID = 123456789  # If you dont know, run the bot and do /id in your private chat with it, also an integer
-    OWNER_USERNAME = "awoo"
-    SUPPORT_CHAT = "awoo"  # Your own group for support, do not add the @
+    OWNER_ID = 1159381624  # If you dont know, run the bot and do /id in your private chat with it, also an integer
+    OWNER_USERNAME = "Ruined_soul"
+    SUPPORT_CHAT = "grouptdsupport"  # Your own group for support, do not add the @
     JOIN_LOGGER = (
-        -1234567890123
+        -1002472321139
     )  # Prints any new group the bot is added to, prints just the name and ID.
     EVENT_LOGS = (
-        -1234567890123
+        -1002472321139
     )  # Prints information like gbans, sudo promotes, AI enabled disable states that may help in debugging and shit
     ALLOW_CHATS = True
 
     # RECOMMENDED
     SQLALCHEMY_DATABASE_URI = "postgresql://xebal_owner:PtInCbW2xM6Y@ep-shy-morning-a54nfmjn.us-east-2.aws.neon.tech/xebal?sslmode=require"  # needed for any database modules
-    DB_NAME = "databasename"  # needed for cron_jobs module, use same databasename from SQLALCHEMY_DATABASE_URI
+    DB_NAME = "xebal"  # needed for cron_jobs module, use same databasename from SQLALCHEMY_DATABASE_URI
     LOAD = []
     NO_LOAD = ["rss", "cleaner", "connection", "math"]
     WEBHOOK = False
