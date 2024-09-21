@@ -30,7 +30,7 @@ class Config(object):
     ALLOW_CHATS = True
 
     # RECOMMENDED
-    SQLALCHEMY_DATABASE_URI = "something://somewhat:user@hosturl:port/databasename"  # needed for any database modules
+    SQLALCHEMY_DATABASE_URI = "postgresql://xebal_owner:PtInCbW2xM6Y@ep-shy-morning-a54nfmjn.us-east-2.aws.neon.tech/xebal?sslmode=require"  # needed for any database modules
     DB_NAME = "databasename"  # needed for cron_jobs module, use same databasename from SQLALCHEMY_DATABASE_URI
     LOAD = []
     NO_LOAD = ["rss", "cleaner", "connection", "math"]
