@@ -34,7 +34,7 @@ class Config(object):
     DB_NAME = "xebal"  # needed for cron_jobs module, use same databasename from SQLALCHEMY_DATABASE_URI
     LOAD = []
     NO_LOAD = ["rss", "cleaner", "connection", "math"]
-    WEBHOOK = True
+    WEBHOOK = False
     INFOPIC = True
     URL = None
     SPAMWATCH_API = ""  # go to support.spamwat.ch to get key
@@ -52,7 +52,7 @@ class Config(object):
     WHITELIST_USERS = get_user_list("elevated_users.json", "whitelists")
     DONATION_LINK = None  # EG, paypal
     CERT_PATH = None
-    PORT = 8443
+    PORT = 5000
     DEL_CMDS = True  # Delete commands that users dont have access to, like delete /ban if a non admin uses it.
     STRICT_GBAN = True
     WORKERS = (
