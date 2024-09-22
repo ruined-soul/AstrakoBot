@@ -34,7 +34,7 @@ class Config(object):
     DB_NAME = "xebal"  # needed for cron_jobs module, use same databasename from SQLALCHEMY_DATABASE_URI
     LOAD = []
     NO_LOAD = ["rss", "cleaner", "connection", "math"]
-    WEBHOOK = False
+    WEBHOOK = True
     INFOPIC = True
     URL = None
     SPAMWATCH_API = ""  # go to support.spamwat.ch to get key
