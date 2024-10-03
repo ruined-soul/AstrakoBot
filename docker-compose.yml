@@ -1,0 +1,13 @@
+version: '3'
+services:
+  bot:
+    build: .
+    ports:
+      - "5000:5000"
+    command: ./run.sh
+
+  healthcheck:
+    build: .
+    ports:
+      - "5001:5001"
+    command: python healthcheck.py
